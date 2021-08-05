@@ -27,8 +27,7 @@ import javax.cache.CacheManager;
 import javax.cache.Caching;
 import javax.cache.spi.CachingProvider;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * {@link CachePutInterceptor} Test
@@ -48,9 +47,14 @@ public class CachePutInterceptorTest {
 
     @Test
     public void test() {
-        DataRepository repository = enhancer.enhance(dataRepository, DataRepository.class, new CachePutInterceptor());
+        DataRepository repository = enhancer.enhance(dataRepository, DataRepository.class, new CachePutInterceptor(), new CacheRemoveInterceptor());
         assertTrue(repository.create("A", 1));
         Cache cache = cacheManager.getCache("simpleCache");
         assertEquals(repository.get("A"), cache.get("A"));
+
+        //remove test
+        assertTrue(repository.remove("A"));
+        assertNull(cache.get("A"));
+
     }
 }
