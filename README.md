@@ -14,6 +14,12 @@
 
 <br/>
 
-####org.springframework.validation.annotation.Validated
+#### org.springframework.validation.annotation.Validated
 ##### spring容器内的Validator实例会校验添加了@Validated注释的类实例完成后，其中添加了 Bean Validation各类校验注释是否满足校验。
 ###### 示例：spring内Bean后置处理类MethodValidationPostProcessor，将该类（实例化时需要注入Validator的实例）添加入spring容器，则该bean后置处理器会调用其Validator成员变量校验添加了@Validated注释的bean是否满足校验条件。
+
+<br/><br/><br/>
+
+#### java-caching 作业说明
+##### 接口实现类：org.geektimes.cache.interceptor.CacheRemoveInterceptor
+##### 测试类：org.geektimes.cache.interceptor.CachePutInterceptorTest
