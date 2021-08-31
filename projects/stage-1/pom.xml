@@ -21,6 +21,7 @@
         <module>middleware-frameworks</module>
         <module>user-platform</module>
         <module>shopizer</module>
+        <module>homework</module>
     </modules>
 
     <properties>
