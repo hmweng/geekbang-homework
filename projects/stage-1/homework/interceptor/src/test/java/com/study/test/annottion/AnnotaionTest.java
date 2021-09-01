@@ -1,5 +1,6 @@
-package com.study.test.interceptor;
+package com.study.test.annottion;
 
+import com.study.test.interceptor.TestService;
 import org.eclipse.microprofile.faulttolerance.Bulkhead;
 import org.junit.Test;
 

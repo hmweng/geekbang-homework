@@ -22,4 +22,14 @@ public class BulkheadInterceptorTest {
         bulkheadInterceptor.execute(reflectInvocationContext);
     }
 
+    @Test
+    public void testBulkheadAsyn() throws Exception {
+        BulkheadInterceptor bulkheadInterceptor = new BulkheadInterceptor();
+        TestService testService = new TestService();
+        Method service = TestService.class.getMethod("serviceAsyn", String.class);
+        ReflectInvocationContext reflectInvocationContext = new ReflectInvocationContext(testService, service, "hello world");
+        Object result = bulkheadInterceptor.execute(reflectInvocationContext);
+        System.out.printf("result: %s", result);
+    }
+
 }
