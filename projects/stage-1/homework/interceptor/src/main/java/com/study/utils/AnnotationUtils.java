@@ -4,13 +4,14 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 /**
- * @Author: jicai
- * @Date: 2021/9/1
- * @Description:
+ * @author：jicai
+ * @description：
+ * @date：created in 2021/9/1 10:33 下午
+ * @modified by:
  */
 public class AnnotationUtils {
 
-    public static <T extends Annotation> T getBulkheadByType(Method method, Class<T> clazz) {
+    public static <T extends Annotation> T getAnnotation(Method method, Class<T> clazz) {
         T annotation;
         if (method.isAnnotationPresent(clazz)) {
             annotation = method.getAnnotation(clazz);

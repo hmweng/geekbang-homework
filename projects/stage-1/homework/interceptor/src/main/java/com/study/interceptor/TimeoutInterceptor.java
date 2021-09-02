@@ -1,6 +1,5 @@
 package com.study.interceptor;
 
-import org.eclipse.microprofile.faulttolerance.Bulkhead;
 import org.eclipse.microprofile.faulttolerance.Timeout;
 
 import javax.interceptor.AroundInvoke;
@@ -10,7 +9,7 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.concurrent.*;
 
-import static com.study.utils.AnnotationUtils.getBulkheadByType;
+import static com.study.utils.AnnotationUtils.getAnnotation;
 
 /**
  * @Author: jicai
@@ -21,11 +20,11 @@ import static com.study.utils.AnnotationUtils.getBulkheadByType;
 @Interceptor
 public class TimeoutInterceptor {
 
-    private final ExecutorService executorService = Executors.newCachedThreadPool();
+    private static final ExecutorService executorService = Executors.newCachedThreadPool();
 
     @AroundInvoke
     public Object execute(InvocationContext invocationContext) throws Exception {
-        Timeout timeout = getBulkheadByType(invocationContext.getMethod(), Timeout.class);
+        Timeout timeout = getAnnotation(invocationContext.getMethod(), Timeout.class);
         if (timeout == null) {
             throw new IllegalArgumentException("no @Timeout annotation");
         }
@@ -33,7 +32,7 @@ public class TimeoutInterceptor {
         ChronoUnit chronoUnit = timeout.unit();
         Duration duration = chronoUnit.getDuration();
         Future<Object> future = executorService.submit(invocationContext::proceed);
-        return future.get(value, TimeUnit.NANOSECONDS);
+        return future.get(value, TimeUnit.MILLISECONDS);
     }
 
 }

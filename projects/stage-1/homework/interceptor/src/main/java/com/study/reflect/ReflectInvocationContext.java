@@ -19,7 +19,7 @@ public class ReflectInvocationContext implements InvocationContext {
 
     private Object[] paramters;
 
-    private Map<String, Object> contextData;
+    private final Map<String, Object> contextData;
 
     public ReflectInvocationContext(Object target, Method method, Object... paramters) {
         this.target = target;

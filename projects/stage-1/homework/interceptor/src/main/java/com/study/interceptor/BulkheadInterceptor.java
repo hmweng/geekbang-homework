@@ -6,11 +6,10 @@ import org.eclipse.microprofile.faulttolerance.Bulkhead;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.concurrent.*;
 
-import static com.study.utils.AnnotationUtils.getBulkheadByType;
+import static com.study.utils.AnnotationUtils.getAnnotation;
 
 /**
  * @Author: jicai
@@ -27,11 +26,11 @@ public class BulkheadInterceptor {
     @AroundInvoke
     public Object execute(InvocationContext invocationContext) throws Exception {
         Method method = invocationContext.getMethod();
-        Bulkhead bulkhead = getBulkheadByType(method, Bulkhead.class);
+        Bulkhead bulkhead = getAnnotation(method, Bulkhead.class);
         if (bulkhead == null) {
             throw new IllegalArgumentException("no @Bulkhead annotation");
         }
-        Asynchronous asynchronous = getBulkheadByType(method, Asynchronous.class);
+        Asynchronous asynchronous = getAnnotation(method, Asynchronous.class);
         int coreSize = bulkhead.value();
         if (asynchronous != null) {
             ExecutorService executorService = threadPoolCache.computeIfAbsent(bulkhead, (key) -> {

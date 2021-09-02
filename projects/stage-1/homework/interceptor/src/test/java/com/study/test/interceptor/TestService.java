@@ -1,5 +1,6 @@
 package com.study.test.interceptor;
 
+import org.eclipse.microprofile.faulttolerance.Asynchronous;
 import org.eclipse.microprofile.faulttolerance.Bulkhead;
 import org.eclipse.microprofile.faulttolerance.Timeout;
 
@@ -14,7 +15,6 @@ import java.time.temporal.ChronoUnit;
 @Timeout(value = 1, unit = ChronoUnit.NANOS)
 public class TestService extends TestSuperService {
 
-//    @Asynchronous
     public void service(String str) {
         System.out.println(str);
     }
@@ -26,6 +26,12 @@ public class TestService extends TestSuperService {
             e.printStackTrace();
         }
         System.out.println(str);
+    }
+
+    @Asynchronous
+    public String serviceAsyn(String str) {
+        System.out.println(str);
+        return str + " thank";
     }
 
 }
