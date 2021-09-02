@@ -12,7 +12,7 @@ import java.time.temporal.ChronoUnit;
  * @Description:
  */
 @Bulkhead
-@Timeout(value = 1, unit = ChronoUnit.NANOS)
+@Timeout(value = 1000, unit = ChronoUnit.NANOS)
 public class TestService extends TestSuperService {
 
     public void service(String str) {

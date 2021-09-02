@@ -1,6 +1,5 @@
 package com.study.test.interceptor;
 
-import com.study.interceptor.BulkheadInterceptor;
 import com.study.interceptor.TimeoutInterceptor;
 import com.study.reflect.ReflectInvocationContext;
 import org.junit.Test;
@@ -16,11 +15,11 @@ public class TimeoutInterceptorTest {
 
     @Test
     public void testTimeout() throws Exception {
-        TimeoutInterceptor bulkheadInterceptor = new TimeoutInterceptor();
+        TimeoutInterceptor timeoutInterceptor = new TimeoutInterceptor();
         TestService testService = new TestService();
         Method serviceTime = TestService.class.getMethod("serviceTime", String.class);
         ReflectInvocationContext reflectInvocationContext = new ReflectInvocationContext(testService, serviceTime, "hello world");
-        bulkheadInterceptor.execute(reflectInvocationContext);
+        timeoutInterceptor.execute(reflectInvocationContext);
     }
 
 }
