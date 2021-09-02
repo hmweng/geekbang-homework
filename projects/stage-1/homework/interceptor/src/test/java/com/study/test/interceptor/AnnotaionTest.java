@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.time.temporal.ChronoUnit;
 
 /**
  * @Author: jicai
@@ -30,6 +31,14 @@ public class AnnotaionTest {
         System.out.printf("method annotation : %s\n", methodAnnotation);
         Annotation[] methodDeclaredAnnotations = method.getDeclaredAnnotations();
         System.out.printf("method declaredAnnotations : %s\n", methodDeclaredAnnotations);
+    }
+
+    @Test
+    public void testTime() {
+        ChronoUnit millis = ChronoUnit.MILLIS;
+        millis = ChronoUnit.NANOS;
+        millis = ChronoUnit.SECONDS;
+        millis = ChronoUnit.MINUTES;
     }
 
 }

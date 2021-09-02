@@ -10,6 +10,8 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.concurrent.*;
 
+import static com.study.utils.AnnotationUtils.getBulkheadByType;
+
 /**
  * @Author: jicai
  * @Date: 2021/8/31
@@ -41,7 +43,6 @@ public class BulkheadInterceptor {
         } else {
             Semaphore semaphore = semaphoreCache.computeIfAbsent(bulkhead, (key) -> new Semaphore(coreSize));
             if (semaphore.tryAcquire()) {
-                invocationContext.proceed();
                 try {
                     return invocationContext.proceed();
                 } finally {
@@ -49,18 +50,7 @@ public class BulkheadInterceptor {
                 }
             }
         }
-
         return null;
-    }
-
-    private <T extends Annotation> T getBulkheadByType(Method method, Class<T> clazz) {
-        T annotation;
-        if (method.isAnnotationPresent(clazz)) {
-            annotation = method.getAnnotation(clazz);
-        } else {
-            annotation = method.getDeclaringClass().getAnnotation(clazz);
-        }
-        return annotation;
     }
 
 }
