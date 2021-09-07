@@ -25,6 +25,7 @@ public class BulkheadInterceptor {
 
     @AroundInvoke
     public Object execute(InvocationContext invocationContext) throws Exception {
+        System.out.printf("BulkheadInterceptor execute, params: %s \n", invocationContext);
         Method method = invocationContext.getMethod();
         Bulkhead bulkhead = getAnnotation(method, Bulkhead.class);
         if (bulkhead == null) {

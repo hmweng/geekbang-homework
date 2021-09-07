@@ -1,6 +1,9 @@
 package com.study.test.cglib;
 
+import com.study.interceptor.BulkheadInterceptor;
+import com.study.interceptor.TimeoutInterceptor;
 import com.study.test.interceptor.TestService;
+import com.study.utils.CglibEnhancerUtils;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
@@ -29,6 +32,16 @@ public class CgLbibEnhancerTest {
 
         TestService testService = (TestService) enhancer.create();
         testService.service("hello world");
+    }
+
+    /**
+     * cglib提升
+     */
+    @Test
+    public void testChain() {
+        TestService testService = (TestService)CglibEnhancerUtils.enhancerClass(new TestService(), new TimeoutInterceptor(), new BulkheadInterceptor());
+        testService.service("hello world");
+//        testService.serviceAsyn("hello world");
     }
 
 }

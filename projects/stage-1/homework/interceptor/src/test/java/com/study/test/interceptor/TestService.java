@@ -13,18 +13,18 @@ import java.time.temporal.ChronoUnit;
  */
 @Bulkhead
 @Timeout(value = 1000, unit = ChronoUnit.NANOS)
-public class TestService extends TestSuperService {
+public class TestService/* extends TestSuperService*/ {
 
     public void service(String str) {
         System.out.println(str);
     }
 
     public void serviceTime(String str) {
-        try {
+        /*try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
         System.out.println(str);
     }
 

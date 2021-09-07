@@ -24,6 +24,7 @@ public class TimeoutInterceptor {
 
     @AroundInvoke
     public Object execute(InvocationContext invocationContext) throws Exception {
+        System.out.printf("TimeoutInterceptor execute, params: %s \n", invocationContext);
         Timeout timeout = getAnnotation(invocationContext.getMethod(), Timeout.class);
         if (timeout == null) {
             throw new IllegalArgumentException("no @Timeout annotation");
