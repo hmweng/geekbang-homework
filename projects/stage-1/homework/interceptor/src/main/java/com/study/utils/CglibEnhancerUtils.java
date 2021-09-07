@@ -11,18 +11,18 @@ import net.sf.cglib.proxy.Enhancer;
 public class CglibEnhancerUtils {
 
 
-    /*public static <T> T enhancerClass(T target, Object... interceptors) {
+    public static <T> T enhancerClass(T target, Object... interceptors) {
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(target.getClass());
         enhancer.setCallback(new AroundInvokeMethodInterceptor(interceptors));
         return (T)enhancer.create();
-    }*/
+    }
 
-    public static Object enhancerClass(Object target, Object... interceptors) {
+    /*public static <T extends Class<?>> T enhancerClass(T clazz, Object... interceptors) {
         Enhancer enhancer = new Enhancer();
-        enhancer.setSuperclass(target.getClass());
+        enhancer.setSuperclass(clazz);
         enhancer.setCallback(new AroundInvokeMethodInterceptor(interceptors));
         return enhancer.create();
-    }
+    }*/
 
 }

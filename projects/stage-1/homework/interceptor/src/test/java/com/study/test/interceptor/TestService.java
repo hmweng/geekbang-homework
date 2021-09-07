@@ -13,12 +13,14 @@ import java.time.temporal.ChronoUnit;
  */
 @Bulkhead
 @Timeout(value = 1000, unit = ChronoUnit.NANOS)
-public class TestService/* extends TestSuperService*/ {
+public class TestService implements ITestService/* extends TestSuperService*/ {
 
+    @Override
     public void service(String str) {
         System.out.println(str);
     }
 
+    @Override
     public void serviceTime(String str) {
         /*try {
             Thread.sleep(1000);
@@ -28,6 +30,7 @@ public class TestService/* extends TestSuperService*/ {
         System.out.println(str);
     }
 
+    @Override
     @Asynchronous
     public String serviceAsyn(String str) {
         System.out.println(str);

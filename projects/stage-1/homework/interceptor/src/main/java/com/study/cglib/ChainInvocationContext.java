@@ -16,9 +16,9 @@ import java.util.stream.Stream;
  */
 public class ChainInvocationContext implements InvocationContext {
 
-    private final Object[] interceptors;
-
     private final InvocationContext declareMethod;
+
+    private final Object[] interceptors;
 
     private final Map<Integer, Method> cacheInterceptorMethodMap;
 

@@ -39,7 +39,7 @@ public class CgLbibEnhancerTest {
      */
     @Test
     public void testChain() {
-        TestService testService = (TestService)CglibEnhancerUtils.enhancerClass(new TestService(), new TimeoutInterceptor(), new BulkheadInterceptor());
+        TestService testService = CglibEnhancerUtils.enhancerClass(new TestService(), new TimeoutInterceptor(), new BulkheadInterceptor());
         testService.service("hello world");
 //        testService.serviceAsyn("hello world");
     }
